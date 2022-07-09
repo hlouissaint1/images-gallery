@@ -23,6 +23,7 @@ const App = () => {
       .catch((err) => {
         console.log(err);
       })
+      setImgName('');
   }
   console.log(UNSPLASH_KEY);
   
