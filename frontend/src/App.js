@@ -1,36 +1,40 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { Header } from './components/Header';
-import { Search } from './components/Search';
-import { useState } from 'react';
-
+import "bootstrap/dist/css/bootstrap.min.css";
+import { Header } from "./components/Header";
+import { Search } from "./components/Search";
+import { useState } from "react";
 
 const UNSPLASH_KEY = process.env.REACT_APP_UNSPLASH_KEY;
-const URL = 'https://api.unsplash.com/';
+const URL = "https://api.unsplash.com/";
 
-const App = () => {
-  const [imgName, setImgName] = useState('');
-  useState('')
-  
+function App() {
+  const [imgName, setImgName] = useState("");
+  const [images, setImages] = useState([]);
+
+  console.log(images);
+
   const handleSearchSubmit = (e) => {
-    const endPoint = '/photos/random';
+    const endPoint = "/photos/random";
     e.preventDefault();
     console.log(imgName);
     fetch(`${URL}${endPoint}?query=${imgName}&client_id=${UNSPLASH_KEY}`)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data)
+        setImages([data, ...images]);
       })
       .catch((err) => {
         console.log(err);
-      })
-      setImgName('');
-  }
-  console.log(UNSPLASH_KEY);
-  
+      });
+    setImgName("");
+  };
+
   return (
     <div>
-      <Header title="Images Gallery"/>
-      <Search handleSubmit={handleSearchSubmit} imgName={imgName} setImgName={setImgName}/>
+      <Header title="Images Gallery" />
+      <Search
+        handleSubmit={handleSearchSubmit}
+        imgName={imgName}
+        setImgName={setImgName}
+      />
     </div>
   );
 }

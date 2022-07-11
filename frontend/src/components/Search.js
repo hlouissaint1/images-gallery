@@ -8,17 +8,19 @@ export const Search = ({ handleSubmit, imgName, setImgName }) => {
         <Col xs={12} md={8} lg={6}>
           <Form onSubmit={handleSubmit}>
             <Form.Row>
-                <Col xs={9}>
+              <Col xs={9}>
                 <Form.Control
                   type="text"
                   value={imgName}
-                  onChange={ (e) => setImgName(e.target.value)} 
-                  placeholder="Search for new image..." 
+                  onChange={(e) => setImgName(e.target.value)}
+                  placeholder="Search for new image..."
                 />
-                </Col>
-                <Col>
-                <Button variant="primary" type="submit">Search</Button>
-                </Col>
+              </Col>
+              <Col>
+                <Button variant="primary" type="submit">
+                  Search
+                </Button>
+              </Col>
             </Form.Row>
           </Form>
         </Col>
